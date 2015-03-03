@@ -177,7 +177,7 @@ window.onload = function () {
       var context = renderer.getContext();
       var canvas = renderer.domElement;
       context.readPixels(0, 0, width, height, context.RGBA, context.UNSIGNED_BYTE, readBuffer);
-
+      
       encoder.addFrame(readBuffer, true);
     }
     if (frames / fps == 6) {
@@ -185,7 +185,6 @@ window.onload = function () {
       document.getElementById("image").src = 'data:image/gif;base64,'+encode64(encoder.stream().getData());
     }
     frames++;
-
 	}
 
 	function update() {
