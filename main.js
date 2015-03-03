@@ -10,7 +10,7 @@ window.onload = function () {
 
 	var camera, scene, renderer;
 
-  var encoder;
+	var encoder;
 
 	var isUserInteracting = false,
 	onMouseDownMouseX = 0, onMouseDownMouseY = 0,
@@ -25,11 +25,11 @@ window.onload = function () {
 
 		var container, mesh;
 
-    encoder = new GIFEncoder();
-    encoder.setRepeat(0);
-    encoder.setDelay(1/fps * 1000);
-    encoder.setSize(width,height);
-
+		encoder = new GIFEncoder();
+		encoder.setRepeat(0);
+		encoder.setDelay(1/fps * 1000);
+		encoder.setSize(width,height);
+    
 		container = document.getElementById( 'container' );
 
 		camera = new THREE.PerspectiveCamera( 75, width / height, 1, 1100 );
@@ -172,19 +172,19 @@ window.onload = function () {
 
 		requestAnimationFrame( animate );
 		update();
-    if (frames / fps < 6) {
-      var readBuffer = new Uint8Array(width * height * 4);
-      var context = renderer.getContext();
-      var canvas = renderer.domElement;
-      context.readPixels(0, 0, width, height, context.RGBA, context.UNSIGNED_BYTE, readBuffer);
-      
-      encoder.addFrame(readBuffer, true);
-    }
-    if (frames / fps == 6) {
-      encoder.finish();
-      document.getElementById("image").src = 'data:image/gif;base64,'+encode64(encoder.stream().getData());
-    }
-    frames++;
+		if (frames / fps < 6) {                                                                                    
+		  var readBuffer = new Uint8Array(width * height * 4);
+		  var context = renderer.getContext();
+		  var canvas = renderer.domElement;
+		  context.readPixels(0, 0, width, height, context.RGBA, context.UNSIGNED_BYTE, readBuffer);
+		  
+		  encoder.addFrame(readBuffer, true);
+		}
+		if (frames / fps == 6) {
+		  encoder.finish();
+		  document.getElementById("image").src = 'data:image/gif;base64,'+encode64(encoder.stream().getData());
+		}
+		frames++;
 	}
 
 	function update() {
