@@ -99,7 +99,7 @@ window.onload = function () {
 
 		window.addEventListener( 'resize', onWindowResize, false );
 
-    console.log(encoder.start());
+		console.log(encoder.start());
 	}
 
 	function onWindowResize() {
